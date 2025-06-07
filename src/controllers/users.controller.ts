@@ -1,48 +1,52 @@
 import { Response, Request } from "express";
 
+import User from "../model/users";
+
 export async function getUsers(req: Request, res: Response) {
   try {
-    // Simulate fetching users from a database
-    const users = [
-      { id: 1, name: "John Doe" },
-      { id: 2, name: "Jane Smith" },
-    ];
-
-    res.status(200).json(users);
+    const userList = await User.find();
+    res.status(200).json(userList);
   } catch (error) {
     res.status(500).json({ message: "Error fetching users" });
   }
 }
 
+
 export async function createUsers(req: Request, res: Response) {
-try{
+  try {
+    const { name, email, password } = req.body;
 
-  const { name, email, password } = req.body;
+    const newUser = new User({ name, email, password });
+    await newUser.save();
 
-  res.status(200).json({ message: "User created successfully.",});
-} catch (error) {
-  res.status(500).json({ message: "Error fetching users" });
-}
+    res.status(201).json({ message: "User created successfully.", user: newUser });
+  } catch (error) {
+    res.status(500).json({ message: "Error creating user" });
+  }
 }
 
 
 export async function updateUsers(req: Request, res: Response) {
-  try {
-    const userId = req.params.id; 
-    const { name, email } = req.body;
+ try {
+    const { id } = req.params;
+    const updates = req.body;
 
-    res.status(200).json({message: "User updated successfully.",});
+    const updatedUser = await User.findByIdAndUpdate(id, updates, { new: true });
+
+    res.status(200).json({ message: "User updated", user: updatedUser });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching users" });
+    res.status(500).json({ message: "Error updating user" });
   }
 }
 
 export async function deleteUsers(req: Request, res: Response) {
-try{
-  const userId = req.params.id;
+try {
+    const { id } = req.params;
 
-  res.status(200).json({message: "User deleted successfully.",});
-} catch (error) {
-  res.status(500).json({ message: "Error fetching users" });
-}
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "User deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting user" });
+  }
 }
