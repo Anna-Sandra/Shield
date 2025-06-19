@@ -36,9 +36,9 @@ export const getUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const getUser = await User.findById(id).select('-password');
+    const user = await User.findById(id).select('-password');
 
-    res.status(200).json({ message: "User found", user: getUser });
+    res.status(200).json({ message: "User found", user: user });
      return;
   } catch (error) {
     console.log(error);
