@@ -1,7 +1,10 @@
-import express from "express";
-import userRouter from "./routes/user.route";
+import express from 'express';
+import userRouter from './routes/user.route';
+import router from './routes/auth';
+
 
 const app = express();
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,19 +13,8 @@ app.get("/", (req, res) => {
   res.send("shield is live");
 });
 
-app.post("/users", (req, res) => {
-  res.send("User created");
-});
-
-app.put("/users/:id", (req, res) => {
-  res.send(`User with ID ${req.params.id} updated`);
-});
-
-app.delete("/users/:id", (req, res) => {
-  res.send(`User with ID ${req.params.id} deleted`);
-});
-
-app.use("/users", userRouter);
+app.use('/api/auth', router);      
+app.use('/api/users', userRouter);
 
 
 export default app;

@@ -1,16 +1,22 @@
 import express from "express";
-import { getUsers, createUsers, updateUsers, deleteUsers } from "../controllers/users.controller";
+import { getUsers, getUser, createUsers, updateUsers, deleteUsers } from "../controllers/users.controller";
 
 
 const userRouter = express.Router();
 
-userRouter.get("/", getUsers);
-// userRouter.post("/create");
+//http://localhost:3000/api/users/
+userRouter.get("/",  getUsers);
 
-userRouter.post("/users", createUsers);
+//http://localhost:3000/api/users/create
+userRouter.post("/create",  createUsers);
 
-userRouter.put("/users/:id", updateUsers);
+//http://localhost:3000/api/users/
+userRouter.get("/:id", getUser);
 
-userRouter.delete("/users/:id", deleteUsers);
+//http://localhost:3000/api/users/
+userRouter.patch("/:id", updateUsers);
+
+//http://localhost:3000/api/users/
+userRouter.delete("/:id", deleteUsers);
 
 export default userRouter;
