@@ -1,6 +1,7 @@
 {
   "name": "shield",
   "version": "1.0.0",
+<<<<<<< HEAD
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,4 +10,33 @@
   "author": "",
   "license": "ISC",
   "description": ""
+=======
+  "description": "Safeguarding against threats",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Shield"
+  },
+  "author": "Anna-Sandra",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.30",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1"
+  }
+>>>>>>> 5cc325d6dae2b04b601a85544f14f6290b7d1a19
 }
