@@ -23,6 +23,7 @@ export const register = async (req: Request, res: Response) => {
     res.status(201).json({ message: 'User registered', userId: user._id });
     return;
   } catch (error) {
+     console.error('REGISTER ERROR:', error);
     res.status(500).json({ error: 'Server error' });
     return;
   }
@@ -54,6 +55,7 @@ export const login = async (req: Request, res: Response) => {
     return;
 
   } catch (error) {
+    console.error('LOGIN ERROR:', error);
     res.status(500).json({ error: 'Server error' });
     return;
   }
