@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
-import {logger} from '../Utils/logger';
+import {logger} from "../Utils/logger";
 
 export const getGitHubProfile = async (req: Request, res: Response) => {
   const { username } = req.params;
