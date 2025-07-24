@@ -21,9 +21,11 @@ async function startServer() {
   connectMongoDB();
 
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+
 }
 
+
 startServer();
+ 
